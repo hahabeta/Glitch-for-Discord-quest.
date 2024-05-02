@@ -1,20 +1,22 @@
 How to use this script:
 
-Accept the quest under User Settings -> Gift Inventory
-Join a vc
-Join the same vc on an alt
-Stream any window (can be notepad or something)
-Press Ctrl+Shift+I to open DevTools
-Go to the Console tab
-Paste the following code and hit enter:
+1.Accept the quest under User Settings -> Gift Inventory
+2.Join a vc
+3.Join the same vc on an alt
+4.Stream any window (can be notepad or something)
+5.Press Ctrl+Shift+I to open DevTools
+6.Go to the Console tab
+7.Paste the following code and hit enter:
 Script to be copied---
+
+
+
+
 let wpRequire;
 window.webpackChunkdiscord_app.push([[ Math.random() ], {}, (req) => { wpRequire = req; }]);
-
 let ApplicationStreamingStore = Object.values(wpRequire.c).find(x => x?.exports?.default?.getStreamerActiveStreamMetadata).exports.default;
 let QuestsStore = Object.values(wpRequire.c).find(x => x?.exports?.default?.getQuest).exports.default;
 let FluxDispatcher = Object.values(wpRequire.c).find(x => x?.exports?.default?.flushWaitQueue).exports.default;
-
 let quest = [...QuestsStore.quests.values()].find(x => x.userStatus?.enrolledAt && !x.userStatus?.completedAt && new Date(x.config.expiresAt).getTime() > Date.now())
 let isApp = navigator.userAgent.includes("Electron/")
 if(!isApp) {
